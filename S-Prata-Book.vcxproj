@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions\functions.cpp" />
     <ClCompile Include="listings\listings.cpp" />
     <ClCompile Include="S-Prata-Book.cpp" />
   </ItemGroup>
