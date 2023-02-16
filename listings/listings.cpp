@@ -1,7 +1,11 @@
 #include "listings.h"
 #include "..\functions\functions.h"
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 #include <string>
+
+const int kLimit = 5;
 
 void l8_1()
 {
@@ -155,4 +159,36 @@ void l8_7()
 	result = version3(input, "@@@");
 	cout << "Your string enhanced: " << result << endl;
 	cout << "Your original string: " << input << endl;
+}
+
+void l8_8()
+{
+	using namespace std;
+	ofstream fout;
+	const char* fn = "ep-data.txt";
+	fout.open(fn);
+	if (!fout.is_open())
+	{
+		cout << "Can't open " << fn << ". Bye!\n";
+		exit(EXIT_FAILURE);
+	}
+
+	double objective;
+	cout << "Enter the focal length "
+		"of your telescope objective in mm: ";
+	cin >> objective;
+	double eps[kLimit];
+
+	cout << "Enter the focal lengths, in mm, of " << kLimit << " eyepieces:\n";
+	
+	for (size_t i = 0; i < kLimit; i++)
+	{
+		cout << "Eyepiece #" << i + 1 << ": ";
+		cin >> eps[i];
+	}
+
+	file_it(fout, objective, eps, kLimit);
+	file_it(cout, objective, eps, kLimit);
+
+	cout << "Done!\n";
 }

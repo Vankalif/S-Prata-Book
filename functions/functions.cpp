@@ -37,9 +37,10 @@ double refcube(double& ra)
 	return ra;
 }
 
+
 // ==================> l8-6 <==================
 
-void display(const FreeThrows& ft)
+void display(const FreeThrows & ft)
 {
 	using std::cout;
 	cout << "Name: " << ft.name << '\n';
@@ -48,7 +49,7 @@ void display(const FreeThrows& ft)
 	cout << "Percent: " << ft.percent << '\n';
 }
 
-void set_pc(FreeThrows& ft)
+void set_pc(FreeThrows & ft)
 {
 	if (ft.attempts != 0)
 	{
@@ -60,7 +61,7 @@ void set_pc(FreeThrows& ft)
 	}
 }
 
-FreeThrows& accumulate(FreeThrows& target, const FreeThrows& source)
+FreeThrows& accumulate(FreeThrows & target, const FreeThrows & source)
 {
 	target.attempts += source.attempts;
 	target.made += source.made;
@@ -69,16 +70,17 @@ FreeThrows& accumulate(FreeThrows& target, const FreeThrows& source)
 	return target;
 }
 
+
 // ==================> l8-7 <==================
 
-std::string version1(const std::string& s1, const std::string& s2)
+std::string version1(const std::string & s1, const std::string & s2)
 {
-	/* 
-	  в данной функции происходим скрытое копирование в
-	  операторе return по причине того, что переменная temp
-	  является локальной для фун-ии version1. В операторе 
-	  return создается анонимная переменная, ссылка на которую
-	  возвращается в вызывающий код.
+	/*
+		в данной функции происходим скрытое копирование в
+		операторе return по причине того, что переменная temp
+		является локальной для фун-ии version1. В операторе
+		return создается анонимная переменная, ссылка на которую
+		возвращается в вызывающий код.
 	*/
 	using namespace std;
 
@@ -89,12 +91,12 @@ std::string version1(const std::string& s1, const std::string& s2)
 }
 
 // Обладает побочным эффектом
-const std::string& version2(std::string& s1, const std::string& s2)
+const std::string& version2(std::string & s1, const std::string & s2)
 {
 	/*
-	  Здесь ничего удивительного, побочный эффект
-	  вызван изменениями в данных, переданных по ссылке,
-	  на то она и ссылка.
+		Здесь ничего удивительного, побочный эффект
+		вызван изменениями в данных, переданных по ссылке,
+		на то она и ссылка.
 	*/
 	s1 = s2 + s1 + s2;
 
@@ -103,18 +105,45 @@ const std::string& version2(std::string& s1, const std::string& s2)
 }
 
 // Плохой дизайн функции
-const std::string& version3(std::string& s1, const std::string& s2)
+const std::string& version3(std::string & s1, const std::string & s2)
+	{
+		/*
+		  В определении функции мы говорим компилятору,
+		  что возвращаем ссылку, но переменная локальная,
+		  поэтому ссылка будет пустой. Практика возвращаения
+		  ссылок на локальные переменные - запрещается!
+		*/
+		using namespace std;
+
+		string temp;
+		temp = s2 + s1 + s2;
+
+		return temp;
+	}
+
+
+// ==================> l8-8 <==================
+
+void file_it(std::ostream& os, double fo, const double fe[], int n)
 {
-	/*
-	  из-за того, что в возвращаемом типе функции
-	  указан квалификатор const, мы говорим, что
-	  возвращаемое значение должно существовать после
-	  заврешения работы функции, но temp удалется из стека.
-	*/
 	using namespace std;
-
-	string temp;
-	temp = s2 + s1 + s2;
-
-	return temp;
+	ios_base::fmtflags initial;
+	initial = os.setf(ios_base::fixed);
+	os.precision(0);
+	os << "Focal length of objective " << fo << "mm.\n";
+	os.setf(ios::showpoint);
+	os.precision(1);
+	os.width(12);
+	os << "f.1. eyepiece";
+	os.width(15);
+	os << "magnification" << endl;
+	
+	for (size_t i = 0; i < n; i++)
+	{
+		os.width(12);
+		os << fe[i];
+		os.width(15);
+		os << int(fo / fe[i] + 0.5) << endl;
+	}
+	os.setf(initial);
 }
