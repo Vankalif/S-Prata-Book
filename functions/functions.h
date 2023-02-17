@@ -28,27 +28,32 @@ double refcube(double& ra);
 // ==================> l8-6 <==================
 
 // печать структуры
-void display(const FreeThrows & ft);
+void display(const FreeThrows& ft);
 
 // задать процент
-void set_pc(FreeThrows & ft);
+void set_pc(FreeThrows& ft);
 
 // добавить значение к структуре из другой структуры
-FreeThrows& accumulate(FreeThrows & target, const FreeThrows & source);
+FreeThrows& accumulate(FreeThrows& target, const FreeThrows& source);
 
 
 // ==================> l8-7 <==================
 
 // версия 1 для изменения строки
-std::string version1(const std::string & s1, const std::string & s2);
+std::string version1(const std::string& s1, const std::string& s2);
 
 // версия 2 для изменения строки
-const std::string& version2(std::string & s1, const std::string & s2);
+const std::string& version2(std::string& s1, const std::string& s2);
 
 // версия 3 для изменения строки
-const std::string& version3(std::string & s1, const std::string & s2);
+const std::string& version3(std::string& s1, const std::string& s2);
 
 
 // ==================> l8-8 <==================
 
 void file_it(std::ostream& os, double fo, const double fe[], int n);
+
+
+// ==================> l8-9 <==================
+
+char* left(const char* str, int n = 1);

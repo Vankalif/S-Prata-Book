@@ -190,3 +190,21 @@ void l8_8()
 
 	cout << "Done!\n";
 }
+
+void l8_9()
+{
+	using namespace std;
+	const int kArrSize = 80;
+	char sample[kArrSize];
+
+	cout << "Enter a string:\n";
+	cin.get(sample, kArrSize);
+
+	char* ps = left(sample, 4);
+	cout << ps << endl;
+	delete[] ps;
+
+	ps = left(sample);
+	cout << ps << endl;
+	delete[] ps;
+}
