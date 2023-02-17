@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
 #include "my_types.h"
 
 inline double square(double x) { return x * x; }

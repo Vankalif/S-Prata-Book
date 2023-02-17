@@ -1,9 +1,7 @@
+#pragma once
 #include "listings.h"
 #include "..\functions\functions.h"
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <string>
+
 
 const int kLimit = 5;
 

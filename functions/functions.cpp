@@ -1,5 +1,4 @@
 #include "functions.h"
-#include <iostream>
 
 void swapr(int& a, int& b)
 {
