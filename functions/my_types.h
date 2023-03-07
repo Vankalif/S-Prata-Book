@@ -9,3 +9,10 @@ struct FreeThrows
 	int attempts;
 	float percent;
 };
+
+struct Job
+{
+	char name[40];
+	double salary;
+	int floor;
+};

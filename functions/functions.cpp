@@ -37,7 +37,9 @@ double refcube(double& ra)
 }
 
 
-// ==================> l8-6 <==================
+///////////////////////////////////////////////////
+// ==================> l8-6 <================== ///
+///////////////////////////////////////////////////
 
 void display(const FreeThrows & ft)
 {
@@ -69,8 +71,16 @@ FreeThrows& accumulate(FreeThrows & target, const FreeThrows & source)
 	return target;
 }
 
+const FreeThrows& clone(FreeThrows& target)
+{
+	FreeThrows* pft = new FreeThrows;
+	*pft = target;
+	return *pft;
+}
 
-// ==================> l8-7 <==================
+///////////////////////////////////////////////////
+// ==================> l8-7 <================== ///
+///////////////////////////////////////////////////
 
 std::string version1(const std::string & s1, const std::string & s2)
 {
@@ -121,7 +131,9 @@ const std::string& version3(std::string & s1, const std::string & s2)
 	}
 
 
-// ==================> l8-8 <==================
+///////////////////////////////////////////////////
+// ==================> l8-8 <================== ///
+///////////////////////////////////////////////////
 
 void file_it(std::ostream& os, double fo, const double fe[], int n)
 {
@@ -148,7 +160,9 @@ void file_it(std::ostream& os, double fo, const double fe[], int n)
 }
 
 
-// ==================> l8-8 <==================
+///////////////////////////////////////////////////
+// ==================> l8-9 <================== ///
+///////////////////////////////////////////////////
 
 char * left(const char* str, int n)
 {
@@ -167,4 +181,97 @@ char * left(const char* str, int n)
 		p[i++] = '\0';
 	}
 	return p;
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-10 <================== //
+///////////////////////////////////////////////////
+
+unsigned long left(unsigned long num, unsigned ct)
+{
+	unsigned digits = 1;
+	unsigned long n = num;
+
+	if (num == 0 || ct == 0)
+	{
+		return 0;
+	}
+
+	while (n /= 10)
+	{
+		digits++;
+	}
+
+	if (digits > ct)
+	{
+		ct = digits - ct;
+		while (ct--)
+		{
+			num /= 10;
+		}
+		return num;
+	}
+	else
+	{
+		return num;
+	}
+
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-11 <================== //
+///////////////////////////////////////////////////
+
+template <typename T>
+void swap_t(T& a, T& b)
+{
+	T temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-12 <================== //
+///////////////////////////////////////////////////
+
+void show(int* arr, int limit)
+{
+	std::cout << std::endl;
+	for (size_t i = 0; i < limit; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-13 <================== //
+///////////////////////////////////////////////////
+
+template <> void swap_t<Job>(Job& a, Job& b)
+{
+	std::cout << "\nExplict specification used\n";
+	double tempd;
+	int tempi;
+
+	tempd = a.salary;
+	a.salary = b.salary;
+	b.salary = tempd;
+
+	tempi = b.floor;
+	b.floor = a.floor;
+	a.floor = tempi;
+}
+
+void show(Job& j)
+{
+	using namespace std;
+	cout << j.name << ": $" << j.salary
+		<< " on floor " << j.floor << endl;
 }

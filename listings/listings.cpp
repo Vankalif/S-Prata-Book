@@ -98,7 +98,7 @@ void l8_6()
 	FreeThrows five = { "Long Long", 6, 14 };
 	FreeThrows team = { "Throwgoods", 0, 0 };
 	FreeThrows dups;
-	
+
 	set_pc(one);
 	display(one);
 	accumulate(team, one);
@@ -125,12 +125,24 @@ void l8_6()
 	// отображение dups после неблагоразумного присваивания
 	std::cout << "Displaying dups after ill-adviced assignment:\n";
 	display(dups);
+
+	// использование функции clone
+	const FreeThrows& cloned_obj = clone(one);
+	std::cout << "One addr: " << &one << std::endl;
+	std::cout << "cloned_obj addr: " << &cloned_obj << std::endl;
+
+	FreeThrows cloned_obj2 = one;
+	std::cout << "One addr: " << &one << std::endl;
+	std::cout << "cloned_obj2 addr: " << &cloned_obj2 << std::endl;
+	delete& cloned_obj;
+	delete& cloned_obj2;
+
 }
 
 void l8_7()
 {
 	using namespace std;
-	
+
 	string input;
 	string copy;
 	string result;
@@ -139,7 +151,7 @@ void l8_7()
 	getline(cin, input);
 	copy = input;
 	cout << "Your string as entered: " << input << endl;
-	
+
 	cout << "\nVersion 1 call\n";
 	result = version1(input, "***");
 	cout << "Your string enhanced: " << result << endl;
@@ -151,7 +163,7 @@ void l8_7()
 	cout << "Your original string: " << input << endl;
 
 	cout << "Resetting original string.\n";
-	
+
 	input = copy;
 	cout << "\nVersion 3 call\n";
 	result = version3(input, "@@@");
@@ -178,7 +190,7 @@ void l8_8()
 	double eps[kLimit];
 
 	cout << "Enter the focal lengths, in mm, of " << kLimit << " eyepieces:\n";
-	
+
 	for (size_t i = 0; i < kLimit; i++)
 	{
 		cout << "Eyepiece #" << i + 1 << ": ";
@@ -207,4 +219,87 @@ void l8_9()
 	ps = left(sample);
 	cout << ps << endl;
 	delete[] ps;
+}
+
+void l8_10()
+{
+	using namespace std;
+
+	const char* trip = "Hawaii!";
+	unsigned long postal_code = 12345678;
+	int i;
+	char* temp;
+
+	for (i = 1; i < 10; i++)
+	{
+		cout << left(postal_code, i) << endl;
+		temp = left(trip, i);
+		cout << temp << endl;
+		delete[] temp;
+	}
+
+}
+
+void l8_11()
+{
+	using namespace std;
+	int j = 14;
+	int d = 22;
+
+	cout << "j = " << j << " d = " << d << endl;
+	swap_t(j, d);
+	cout << "Now j = " << j << " d = " << d << endl;
+
+	double k = 1.123;
+	double g = 9.4;
+
+	cout << "k = " << k << " g = " << g << endl;
+	swap_t(k, g);
+	cout << "Now k = " << k << " g = " << g << endl;
+}
+
+void l8_12()
+{
+	using namespace std;
+	int j = 14, d = 22;
+
+	cout << "j = " << j << " d = " << d << endl;
+	swap_t(j, d);
+	cout << "Now j = " << j << " d = " << d << endl;
+
+	int s1[kLimit] = { 0, 2, 4, 5, 6};
+	int s2[kLimit] = { 1, 7, 1, 15, 24 };
+
+	cout << "Original arrays:\n";
+	show(s1, kLimit);
+	show(s2, kLimit);
+	swap_t(s1, s2, kLimit);
+	cout << "Swapped arrays:\n";
+	show(s1, kLimit);
+	show(s2, kLimit);
+
+}
+
+void l8_13()
+{
+	using namespace std;
+	cout.precision(3);
+	cout.setf(ios::fixed, ios::floatfield);
+
+	int j = 14, d = 22;
+	cout << "j = " << j << " d = " << d << endl;
+	swap_t(j, d);
+	cout << "Now j = " << j << " d = " << d << endl;
+
+	Job Sue = { "Susan Yaffee", 73000.6312, 7 };
+	Job Sidney = { "Sidney Grodick", 68000.1725, 4 };
+
+	cout << "Before job swapping:\n";
+	show(Sue);
+	show(Sidney);
+	swap_t(Sue, Sidney);
+	cout << "After job swapping:\n";
+	show(Sue);
+	show(Sidney);
+
 }
