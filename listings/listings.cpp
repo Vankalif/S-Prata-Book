@@ -1,9 +1,7 @@
-#pragma once
 #include "listings.h"
-#include "..\functions\functions.h"
+#include "../homework/homework.h"
 
-
-const int kLimit = 5;
+constexpr int k_limit = 5;
 
 void l8_1()
 {
@@ -91,13 +89,13 @@ void l8_5()
 
 void l8_6()
 {
-	FreeThrows one = { "Ifelsa Branch", 13, 14 };
-	FreeThrows two = { "Andor Knott", 10, 16 };
-	FreeThrows three = { "Minnie Maximus", 7, 9 };
-	FreeThrows four = { "Whily Looper", 5, 9 };
-	FreeThrows five = { "Long Long", 6, 14 };
-	FreeThrows team = { "Throwgoods", 0, 0 };
-	FreeThrows dups;
+	free_throws one = { "Ifelsa Branch", 13, 14 };
+	free_throws two = { "Andor Knott", 10, 16 };
+	free_throws three = { "Minnie Maximus", 7, 9 };
+	free_throws four = { "Whily Looper", 5, 9 };
+	free_throws five = { "Long Long", 6, 14 };
+	free_throws team = { "Throwgoods", 0, 0 };
+	free_throws dups;
 
 	set_pc(one);
 	display(one);
@@ -127,11 +125,11 @@ void l8_6()
 	display(dups);
 
 	// использование функции clone
-	const FreeThrows& cloned_obj = clone(one);
+	const free_throws& cloned_obj = clone(one);
 	std::cout << "One addr: " << &one << std::endl;
 	std::cout << "cloned_obj addr: " << &cloned_obj << std::endl;
 
-	FreeThrows cloned_obj2 = one;
+	free_throws cloned_obj2 = one;
 	std::cout << "One addr: " << &one << std::endl;
 	std::cout << "cloned_obj2 addr: " << &cloned_obj2 << std::endl;
 	delete& cloned_obj;
@@ -187,18 +185,18 @@ void l8_8()
 	cout << "Enter the focal length "
 		"of your telescope objective in mm: ";
 	cin >> objective;
-	double eps[kLimit];
+	double eps[k_limit];
 
-	cout << "Enter the focal lengths, in mm, of " << kLimit << " eyepieces:\n";
+	cout << "Enter the focal lengths, in mm, of " << k_limit << " eyepieces:\n";
 
-	for (size_t i = 0; i < kLimit; i++)
+	for (size_t i = 0; i < k_limit; i++)
 	{
 		cout << "Eyepiece #" << i + 1 << ": ";
 		cin >> eps[i];
 	}
 
-	file_it(fout, objective, eps, kLimit);
-	file_it(cout, objective, eps, kLimit);
+	file_it(fout, objective, eps, k_limit);
+	file_it(cout, objective, eps, k_limit);
 
 	cout << "Done!\n";
 }
@@ -267,16 +265,16 @@ void l8_12()
 	swap_t(j, d);
 	cout << "Now j = " << j << " d = " << d << endl;
 
-	int s1[kLimit] = { 0, 2, 4, 5, 6};
-	int s2[kLimit] = { 1, 7, 1, 15, 24 };
+	int s1[k_limit] = { 0, 2, 4, 5, 6 };
+	int s2[k_limit] = { 1, 7, 1, 15, 24 };
 
 	cout << "Original arrays:\n";
-	show(s1, kLimit);
-	show(s2, kLimit);
-	swap_t(s1, s2, kLimit);
+	show(s1, k_limit);
+	show(s2, k_limit);
+	swap_t(s1, s2, k_limit);
 	cout << "Swapped arrays:\n";
-	show(s1, kLimit);
-	show(s2, kLimit);
+	show(s1, k_limit);
+	show(s2, k_limit);
 
 }
 
@@ -291,8 +289,8 @@ void l8_13()
 	swap_t(j, d);
 	cout << "Now j = " << j << " d = " << d << endl;
 
-	Job Sue = { "Susan Yaffee", 73000.6312, 7 };
-	Job Sidney = { "Sidney Grodick", 68000.1725, 4 };
+	job Sue = { "Susan Yaffee", 73000.6312, 7 };
+	job Sidney = { "Sidney Grodick", 68000.1725, 4 };
 
 	cout << "Before job swapping:\n";
 	show(Sue);
@@ -302,4 +300,163 @@ void l8_13()
 	show(Sue);
 	show(Sidney);
 
+}
+
+void l8_14()
+{
+	using namespace std;
+	int things[6] = { 13, 31, 103, 301, 310, 130 };
+	struct debts mr_e[3] =
+	{
+		{"Ima Wolfe", 2400.0},
+		{"Ura Foxe", 1300.0},
+		{"Iby Stout", 1800.0},
+	};
+	double* pd[3];
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		pd[i] = &mr_e[i].amount;
+	}
+
+	cout << "Listing Mr.E's counts of things:\n";
+	show_array(things, 6);
+	cout << "Listing Mr.E's debts:\n";
+	show_array(pd, 3);
+}
+
+void l8_15()
+{
+	using namespace std;
+	const int m = 20;
+	const int n = -30;
+	const double x = 15.5;
+	const double y = 25.9;
+
+	cout << lesser(m, n) << endl;
+	cout << lesser(y, x) << endl;
+	cout << lesser<>(m, n) << endl;
+	cout << lesser<int>(x, y) << endl;
+}
+
+void sol_8_1()
+{
+	char st[20] = "hello world!";
+	print_str(st);
+	print_str(st);
+	print_str(st);
+	print_str(st, 1);
+
+}
+
+void sol_8_2()
+{
+	candy_bar bar;
+	set_candy_bar(bar);
+	print_candy_bar(bar);
+
+	candy_bar cbar;
+	set_candy_bar(cbar, "My Candy", 2.05, 800);
+	print_candy_bar(cbar);
+}
+
+void sol_8_3()
+{
+	using namespace std;
+
+	string stop = "stop";
+	string input{};
+
+	cout << "Enter a string (type \"q\" to exit): " << endl;
+
+	while (getline(cin, input))
+	{
+		if (input == "q")
+		{
+			cout << "Bye!" << endl;
+			break;
+		}
+		cout << str_to_upper(input) << '\n';
+	}
+}
+
+void sol_8_4()
+{
+	stringy stringy;
+	char testing[] = "Reality isnt what it used to be.";
+	set(stringy, testing);
+	show(stringy);
+	show(stringy, 2);
+	testing[0] = 'D';
+	testing[1] = 'u';
+	show(testing);
+	show(testing, 3);
+	show("Done!");
+}
+
+void sol_8_5()
+{
+	using namespace std;
+
+	int test_int[] = { 1, 7, 2, 6, 9 };
+	double test_double[] = { 16.5, 1.4, 8.9, 16.6, 15.2 };
+	int temp_int = max5(test_int);
+	double temp_d = max5(test_double);
+
+	cout << temp_int << ' ' << temp_d;
+}
+
+void sol_8_6()
+{
+	using namespace std;
+
+	int test_int[] = {1, 7, 2, 6, 9, 25};
+	double test_double[] = { 16.5, 1.4, 8.9, 15.2 };
+	const int temp_int = maxn(test_int, 6);
+	const double temp_d = maxn(test_double, 4);
+
+	cout << temp_int << ' ' << temp_d;
+
+	const char* test_chr[5] = { "asdasd", "Lada", "Trisha", "Marina", "Nikolay" };
+	const char* result = maxn(test_chr, 5);
+	cout << '\n' << result;
+}
+
+void sol_8_7() 
+{
+	using namespace std;
+	int things[6] = { 13, 31, 103, 301, 310, 130 };
+	struct debts mr_e[3] =
+	{
+		{"Ima Wolfe", 2400.0},
+		{"Ura Foxe", 1300.0},
+		{"Iby Stout", 1800.0},
+	};
+	double* pd[3];
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		pd[i] = &mr_e[i].amount;
+	}
+
+	cout << "Listing Mr.E's counts of things:\n";
+	show_total(things, 6);
+	cout << "Listing Mr.E's debts:\n";
+	show_total(pd, 3);
+}
+
+void l9_1()
+{
+	using namespace std;
+	rect rplace{};
+	polar pplace{};
+
+	cout << "Enter the x and y values: ";
+	while (cin >> rplace.x >> rplace.y)
+	{
+		pplace = rect_to_polar(rplace);
+		show_polar(pplace);
+		cout << "\nNext two numbs (q to quit): ";
+	}
+	cout << "Bye!\n";
 }

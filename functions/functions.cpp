@@ -25,7 +25,7 @@ void swapv(int a, int b)
 }
 
 double cube(double a)
-{	
+{
 	a *= a * a;
 	return a;
 }
@@ -41,7 +41,7 @@ double refcube(double& ra)
 // ==================> l8-6 <================== ///
 ///////////////////////////////////////////////////
 
-void display(const FreeThrows & ft)
+void display(const free_throws& ft)
 {
 	using std::cout;
 	cout << "Name: " << ft.name << '\n';
@@ -50,7 +50,7 @@ void display(const FreeThrows & ft)
 	cout << "Percent: " << ft.percent << '\n';
 }
 
-void set_pc(FreeThrows & ft)
+void set_pc(free_throws& ft)
 {
 	if (ft.attempts != 0)
 	{
@@ -62,7 +62,7 @@ void set_pc(FreeThrows & ft)
 	}
 }
 
-FreeThrows& accumulate(FreeThrows & target, const FreeThrows & source)
+free_throws& accumulate(free_throws& target, const free_throws& source)
 {
 	target.attempts += source.attempts;
 	target.made += source.made;
@@ -71,9 +71,9 @@ FreeThrows& accumulate(FreeThrows & target, const FreeThrows & source)
 	return target;
 }
 
-const FreeThrows& clone(FreeThrows& target)
+const free_throws& clone(free_throws& target)
 {
-	FreeThrows* pft = new FreeThrows;
+	free_throws* pft = new free_throws;
 	*pft = target;
 	return *pft;
 }
@@ -82,7 +82,7 @@ const FreeThrows& clone(FreeThrows& target)
 // ==================> l8-7 <================== ///
 ///////////////////////////////////////////////////
 
-std::string version1(const std::string & s1, const std::string & s2)
+std::string version1(const std::string& s1, const std::string& s2)
 {
 	/*
 		в данной функции происходим скрытое копирование в
@@ -100,7 +100,7 @@ std::string version1(const std::string & s1, const std::string & s2)
 }
 
 // Обладает побочным эффектом
-const std::string& version2(std::string & s1, const std::string & s2)
+const std::string& version2(std::string& s1, const std::string& s2)
 {
 	/*
 		Здесь ничего удивительного, побочный эффект
@@ -114,21 +114,21 @@ const std::string& version2(std::string & s1, const std::string & s2)
 }
 
 // Плохой дизайн функции
-const std::string& version3(std::string & s1, const std::string & s2)
-	{
-		/*
-		  В определении функции мы говорим компилятору,
-		  что возвращаем ссылку, но переменная локальная,
-		  поэтому ссылка будет пустой. Практика возвращаения
-		  ссылок на локальные переменные - запрещается!
-		*/
-		using namespace std;
+const std::string& version3(std::string& s1, const std::string& s2)
+{
+	/*
+	  В определении функции мы говорим компилятору,
+	  что возвращаем ссылку, но переменная локальная,
+	  поэтому ссылка будет пустой. Практика возвращаения
+	  ссылок на локальные переменные - запрещается!
+	*/
+	using namespace std;
 
-		string temp;
-		temp = s2 + s1 + s2;
+	string temp;
+	temp = s2 + s1 + s2;
 
-		return temp;
-	}
+	return temp;
+}
 
 
 ///////////////////////////////////////////////////
@@ -148,7 +148,7 @@ void file_it(std::ostream& os, double fo, const double fe[], int n)
 	os << "f.1. eyepiece";
 	os.width(15);
 	os << "magnification" << endl;
-	
+
 	for (size_t i = 0; i < n; i++)
 	{
 		os.width(12);
@@ -164,7 +164,7 @@ void file_it(std::ostream& os, double fo, const double fe[], int n)
 // ==================> l8-9 <================== ///
 ///////////////////////////////////////////////////
 
-char * left(const char* str, int n)
+char* left(const char* str, int n)
 {
 	if (n < 0)
 	{
@@ -172,7 +172,7 @@ char * left(const char* str, int n)
 	}
 	char* p = new char[n + 1];
 	int i;
-	for ( i = 0; i < n && str[i]; i++)
+	for (i = 0; i < n && str[i]; i++)
 	{
 		p[i] = str[i];
 	}
@@ -254,7 +254,7 @@ void show(int* arr, int limit)
 // ==================> l8-13 <================== //
 ///////////////////////////////////////////////////
 
-template <> void swap_t<Job>(Job& a, Job& b)
+template <> void swap_t<job>(job& a, job& b)
 {
 	std::cout << "\nExplict specification used\n";
 	double tempd;
@@ -269,9 +269,46 @@ template <> void swap_t<Job>(Job& a, Job& b)
 	a.floor = tempi;
 }
 
-void show(Job& j)
+void show(job& j)
 {
 	using namespace std;
 	cout << j.name << ": $" << j.salary
 		<< " on floor " << j.floor << endl;
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-15 <================== //
+///////////////////////////////////////////////////
+
+int lesser(int a, int b)
+{
+	a = a < 0 ? -a : a;
+	b = b < 0 ? -b : b;
+	return a < b ? a : b;
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l9-1 <================== ///
+///////////////////////////////////////////////////
+
+polar rect_to_polar(rect xypos)
+{
+	using namespace std;
+	polar answer{};
+
+	answer.distance = sqrt(xypos.x * xypos.x + xypos.y * xypos.y);
+	answer.angle = atan2(xypos.y, xypos.x);
+
+	return answer;
+}
+
+void show_polar(polar dapos)
+{
+	using namespace std;
+	const double k_rad_to_deg = 57.29577951;
+
+	cout << "distanse " << dapos.distance;
+	cout << " angle " << dapos.angle * k_rad_to_deg;
 }

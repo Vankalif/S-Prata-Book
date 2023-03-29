@@ -128,12 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="functions\functions.cpp" />
+    <ClCompile Include="homework\homework.cpp" />
+    <ClCompile Include="homework\questions\questions.cpp" />
     <ClCompile Include="listings\listings.cpp" />
     <ClCompile Include="S-Prata-Book.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions\functions.h" />
-    <ClInclude Include="functions\my_types.h" />
+    <ClInclude Include="types\my_types.h" />
     <ClInclude Include="homework\questions\questions.h" />
     <ClInclude Include="homework\homework.h" />
     <ClInclude Include="listings\listings.h" />

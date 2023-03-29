@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include "my_types.h"
+#include <cmath>
+#include "../types/my_types.h"
 
 inline double square(double x) { return x * x; }
 
@@ -32,16 +33,16 @@ double refcube(double& ra);
 ///////////////////////////////////////////////////
 
 // печать структуры
-void display(const FreeThrows& ft);
+void display(const free_throws& ft);
 
 // задать процент
-void set_pc(FreeThrows& ft);
+void set_pc(free_throws& ft);
 
 // добавить значение к структуре из другой структуры
-FreeThrows& accumulate(FreeThrows& target, const FreeThrows& source);
+free_throws& accumulate(free_throws& target, const free_throws& source);
 
 // клонирование объекта
-const FreeThrows& clone(FreeThrows& target);
+const free_throws& clone(free_throws& target);
 
 
 ///////////////////////////////////////////////////
@@ -119,7 +120,61 @@ void show(int* arr, int limit);
 ///////////////////////////////////////////////////
 
 // Явная специализация шаблона для типа Job
-template <> void swap_t<Job>(Job& a, Job& b);
+template <> void swap_t<job>(job& a, job& b);
 
 // Отображение Job
-void show(Job& j);
+void show(job& j);
+
+
+///////////////////////////////////////////////////
+// ==================> l8-14 <================== //
+///////////////////////////////////////////////////
+
+template <typename T>
+void show_array(T arr[], int n)
+{
+	using namespace std;
+	cout << "Template A\n";
+	for (size_t i = 0; i < n; i++)
+	{
+		cout << arr[i] << ' ';
+	}
+
+	cout << endl;
+}
+
+template <typename T>
+void show_array(T * arr[], int n)
+{
+	using namespace std;
+	cout << "Template B\n";
+	for (size_t i = 0; i < n; i++)
+	{
+		cout << *arr[i] << ' ';
+	}
+
+	cout << endl;
+}
+
+
+///////////////////////////////////////////////////
+// ==================> l8-15 <================== //
+///////////////////////////////////////////////////
+
+// Возвращает большее из a и b
+template <typename T>
+T lesser(T a, T b)
+{
+	return a < b ? a : b;
+}
+
+// меньшее по модулю
+int lesser(int a, int b);
+
+
+///////////////////////////////////////////////////
+// ==================> l9-1 <================== ///
+///////////////////////////////////////////////////
+
+polar rect_to_polar(rect xypos);
+void show_polar(polar dapos);

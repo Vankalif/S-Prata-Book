@@ -24,6 +24,12 @@
     <ClCompile Include="functions\functions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="homework\questions\questions.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="homework\homework.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="listings\listings.h">
@@ -38,7 +44,7 @@
     <ClInclude Include="functions\functions.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="functions\my_types.h">
+    <ClInclude Include="types\my_types.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

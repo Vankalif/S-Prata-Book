@@ -1,4 +1,4 @@
-﻿#include ".\listings\listings.h"
+﻿#include "./listings/listings.h"
 
 int main()
 {
@@ -14,7 +14,17 @@ int main()
 	// l8_10();
 	// l8_11();
 	// l8_12();
-	l8_13();
+	// l8_13();
+	// l8_14();
+	// l8_15();
+	// sol_8_1();
+	// sol_8_2();
+	// sol_8_3();
+	// sol_8_4();
+	// sol_8_5();
+	// sol_8_6();
+	// sol_8_7();
+	l9_1();
 
 	return 0;
 }
